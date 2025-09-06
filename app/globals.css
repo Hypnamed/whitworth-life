@@ -1,14 +1,7 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "tailwindcss";
+@import "tw-animate-css";
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@custom-variant dark (&:is(.dark *));
 
 html,
 body {
@@ -17,17 +10,9 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-lexend), Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 a {
@@ -38,5 +23,124 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #edf2f4;
+  --foreground: #2b2d42;
+  --card: #ffffff;
+  --card-foreground: #2b2d42;
+  --popover: #ffffff;
+  --popover-foreground: #2b2d42;
+  --primary: #ef233c;
+  --primary-foreground: #edf2f4;
+  --secondary: #8d99ae;
+  --secondary-foreground: #2b2d42;
+  --muted: #8d99ae;
+  --muted-foreground: #2b2d42;
+  --accent: #d80032;
+  --accent-foreground: #edf2f4;
+  --destructive: #ef233c;
+  --border: #8d99ae;
+  --input: #8d99ae;
+  --ring: #8d99ae;
+  --chart-1: #2b2d42;
+  --chart-2: #8d99ae;
+  --chart-3: #edf2f4;
+  --chart-4: #ef233c;
+  --chart-5: #d80032;
+  --sidebar: #edf2f4;
+  --sidebar-foreground: #2b2d42;
+  --sidebar-primary: #8d99ae;
+  --sidebar-primary-foreground: #2b2d42;
+  --sidebar-accent: #d80032;
+  --sidebar-accent-foreground: #edf2f4;
+  --sidebar-border: #8d99ae;
+  --sidebar-ring: #8d99ae;
+}
+
+.dark {
+  --background: #2b2d42;
+  --foreground: #edf2f4;
+  --card: #2b2d42;
+  --card-foreground: #edf2f4;
+  --popover: #2b2d42;
+  --popover-foreground: #edf2f4;
+  --primary: #ef233c;
+  --primary-foreground: #2b2d42;
+  --secondary: #8d99ae;
+  --secondary-foreground: #edf2f4;
+  --muted: #8d99ae;
+  --muted-foreground: #edf2f4;
+  --accent: #d80032;
+  --accent-foreground: #2b2d42;
+  --destructive: #ef233c;
+  --border: #8d99ae;
+  --input: #8d99ae;
+  --ring: #8d99ae;
+  --chart-1: #edf2f4;
+  --chart-2: #8d99ae;
+  --chart-3: #2b2d42;
+  --chart-4: #ef233c;
+  --chart-5: #d80032;
+  --sidebar: #2b2d42;
+  --sidebar-foreground: #edf2f4;
+  --sidebar-primary: #8d99ae;
+  --sidebar-primary-foreground: #edf2f4;
+  --sidebar-accent: #d80032;
+  --sidebar-accent-foreground: #2b2d42;
+  --sidebar-border: #8d99ae;
+  --sidebar-ring: #8d99ae;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

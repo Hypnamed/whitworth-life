@@ -1,23 +1,21 @@
-// Master category list (add as many as you want)
 export const CATEGORIES = [
   "Food & Drink",
   "Faculty",
   "Study",
   "Athletics",
   "Residence",
-  "Parking",
+  "Health",
   "Admin",
 ];
 
-// Optional: brand colors per category (used on the pin)
 export const CAT_COLORS = {
-  "Food & Drink": "#ef4444", // red-500
-  Faculty: "#8b5cf6", // violet-500
-  Study: "#6a040f", // emerald-500
-  Athletics: "#f59e0b", // amber-500
-  Residence: "#0ea5e9", // sky-500
-  Parking: "#64748b", // slate-500
-  Admin: "#22c55e", // green-500
+  "Food & Drink": "#ef4444",
+  Faculty: "#8b5cf6",
+  Study: "#6a040f",
+  Athletics: "#f59e0b",
+  Residence: "#0ea5e9",
+  Health: "#ffa5ab",
+  Admin: "#22c55e",
 };
 
 export const PLACES = [
@@ -34,8 +32,8 @@ export const PLACES = [
     id: "library",
     name: "Library",
     categories: ["Study", "Faculty"],
-    lat: 47.75462,
-    lng: -117.41628,
+    lat: 47.75331746629829,
+    lng: -117.41693334406533,
     desc: "Quiet floors, printers, offices.",
   },
   // Athletics
@@ -240,5 +238,101 @@ export const PLACES = [
     lat: 47.75164949481193,
     lng: -117.41915373123956,
     desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "westminster",
+    name: "Westminster Hall",
+    categories: ["Faculty", "Study"],
+    lat: 47.75491743146826,
+    lng: -117.4194807720076,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "liedcenter",
+    name: "Lied Center",
+    categories: ["Faculty"],
+    lat: 47.75504365936344,
+    lng: -117.41850176576578,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "dornsife",
+    name: "Dornsife Health Sciences Building",
+    categories: ["Faculty", "Study", "Health"],
+    lat: 47.7549964959647,
+    lng: -117.41710773122352,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "weyerhaeuser",
+    name: "Weyerhaeuser Hall",
+    categories: ["Faculty", "Study"],
+    lat: 47.75411136894829,
+    lng: -117.41868013266344,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "lindaman",
+    name: "Lindaman Center",
+    categories: ["Faculty"],
+    lat: 47.75364747158878,
+    lng: -117.41801360368662,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "schumacher",
+    name: "Schumacher Hall",
+    categories: ["Faculty", "Health"],
+    lat: 47.75447630399965,
+    lng: -117.4179686551187,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "robinson",
+    name: "Robinson Science Hall",
+    categories: ["Faculty", "Study"],
+    lat: 47.754231738129,
+    lng: -117.41695346062798,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "ericjohnston",
+    name: "Eric Johnston Science Center",
+    categories: ["Faculty", "Study"],
+    lat: 47.75382802325398,
+    lng: -117.41584836896128,
+    desc: "Events, lectures, admin rooms.",
+  },
+  {
+    id: "hendrick",
+    name: "Hendrick Hall",
+    categories: ["Faculty", "Study", "Admin"],
+    lat: 47.75365378315029,
+    lng: -117.41524623465651,
+    desc: "Best place in the campus.",
+  },
+  {
+    id: "admissions",
+    name: "Whitworth Admissions",
+    categories: ["Faculty", "Admin"],
+    lat: 47.75019768166902,
+    lng: -117.41755887297633,
+    desc: "Admissions building.",
+  },
+  {
+    id: "bookstore",
+    name: "Whitworth Bookstore & Pines Cafe",
+    categories: ["Faculty", "Food & Drink", "Study"],
+    lat: 47.75142056787491,
+    lng: -117.41238966037285,
+    desc: "The place you can get your textbooks and a good coffee.",
+  },
+  {
+    id: "hawthorne",
+    name: "Hawthorne Hall",
+    categories: ["Faculty", "Study", "Admin"],
+    lat: 47.75159369196888,
+    lng: -117.41145759285865,
+    desc: "Admissions building.",
   },
 ];

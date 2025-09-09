@@ -53,12 +53,17 @@ export default function NavigationBar() {
               <FaBars className="mx-auto mt-2" />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuLabel>Menu</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Profile</DropdownMenuItem>
-              <DropdownMenuItem>Billing</DropdownMenuItem>
-              <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/map">Map</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/events">Events</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/faculty">Faculty</Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

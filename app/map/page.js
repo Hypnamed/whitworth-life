@@ -1,7 +1,7 @@
 "use client";
+import CampusMap from "@/components/map/CampusMap";
 
 import { useJsApiLoader } from "@react-google-maps/api";
-import CampusMap from "@/components/map/CampusMap";
 
 export default function MapPage() {
   const { isLoaded, loadError } = useJsApiLoader({

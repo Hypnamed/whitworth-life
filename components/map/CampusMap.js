@@ -25,12 +25,12 @@ const mapOptions = {
 
 export default function CampusMap() {
   const [selectedCats, setSelectedCats] = useState(new Set(CATEGORIES));
-  const [logic, setLogic] = useState("ANY"); // "ANY" or "ALL"
+  const [logic, setLogic] = useState("ANY");
   const [activeId, setActiveId] = useState(null);
 
   const matches = useCallback(
     (place) => {
-      if (selectedCats.size === 0) return true; // nothing selected => show all
+      if (selectedCats.size === 0) return true;
       const has = (c) => selectedCats.has(c);
       const hits = place.categories.filter(has).length;
       return logic === "ANY"

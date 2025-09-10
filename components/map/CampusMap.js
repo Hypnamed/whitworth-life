@@ -69,7 +69,7 @@ export default function CampusMap() {
   );
 
   return (
-    <div className="w-full h-[calc(100dvh-72px)] grid grid-rows-[auto_auto_1fr] sm:rounded-xl overflow-hidden bg-white sm:shadow-lg">
+    <div className="w-full h-[calc(100dvh-72px)] grid grid-rows-[auto_auto_1fr] sm:rounded-xl overflow-hidden bg-background sm:shadow-lg">
       {/* Filter chips */}
       <div className="p-2 sm:p-3 flex gap-2 flex-wrap backdrop-blur">
         {CATEGORIES.map((c) => {

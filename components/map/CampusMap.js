@@ -3,12 +3,11 @@
 import { useMemo, useState, useCallback, useEffect } from "react";
 import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import { MarkerClustererF } from "@react-google-maps/api";
-import { CATEGORIES, PLACES, CAT_COLORS } from "@/data/places";
+import { categories, places, colors } from "@/data/places";
 import { pinIcon } from "@/lib/mapIcons";
 import { Button } from "../ui/button";
 
 const MAP_CENTER = { lat: 47.7531493070487, lng: -117.41635063409184 };
-const MAP_CONTAINER_STYLE = { width: "100%", height: "100%" };
 const DEFAULT_ZOOM = 17;
 const mapOptions = {
   disableDefaultUI: false,
@@ -27,13 +26,12 @@ const mapOptions = {
 import { useSearchParams } from "next/navigation";
 
 export default function CampusMap() {
-  const [selectedCats, setSelectedCats] = useState(new Set(CATEGORIES));
+  const [selectedCats, setSelectedCats] = useState(new Set(categories));
   const [logic, setLogic] = useState("ANY");
   const [activeId, setActiveId] = useState(null);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [mapInstance, setMapInstance] = useState(null);
   const searchParams = useSearchParams();
-  // Set active marker from ?id= param on mount
   useEffect(() => {
     const id = searchParams?.get("id");
     if (id) setActiveId(id);
@@ -51,7 +49,7 @@ export default function CampusMap() {
     [selectedCats, logic]
   );
 
-  const markers = useMemo(() => PLACES.filter(matches), [matches]);
+  const markers = useMemo(() => places.filter(matches), [matches]);
 
   const toggleCat = (cat) => {
     setSelectedCats((prev) => {
@@ -68,14 +66,12 @@ export default function CampusMap() {
       const bounds = new google.maps.LatLngBounds();
       markers.forEach((p) => bounds.extend({ lat: p.lat, lng: p.lng }));
       map.fitBounds(bounds, 80);
-      // After fitBounds, set zoom to state value (manual override)
       window.google.maps.event.addListenerOnce(map, "idle", () => {
         map.setZoom(zoom);
       });
     },
     [markers, zoom]
   );
-  // Keep zoom state in sync with user interaction
   const handleZoomChanged = () => {
     if (mapInstance) {
       setZoom(mapInstance.getZoom());
@@ -86,7 +82,7 @@ export default function CampusMap() {
     <div className="w-full h-[calc(100dvh-72px)] grid grid-rows-[auto_auto_1fr] sm:rounded-xl overflow-hidden bg-background sm:shadow-lg">
       {/* Filter chips */}
       <div className="p-2 sm:p-3 flex gap-2 flex-wrap backdrop-blur">
-        {CATEGORIES.map((c) => {
+        {categories.map((c) => {
           const on = selectedCats.has(c);
           return (
             <Button
@@ -105,7 +101,7 @@ export default function CampusMap() {
           );
         })}
         <Button
-          onClick={() => setSelectedCats(new Set(CATEGORIES))}
+          onClick={() => setSelectedCats(new Set(categories))}
           className="ml-auto px-2.5 py-1 rounded-2xl border text-xs sm:text-sm"
         >
           All
@@ -162,7 +158,7 @@ export default function CampusMap() {
                   key={p.id}
                   position={{ lat: p.lat, lng: p.lng }}
                   clusterer={clusterer}
-                  icon={pinIcon(p.categories, CAT_COLORS)}
+                  icon={pinIcon(p.categories, colors)}
                   onClick={() => setActiveId(p.id)}
                 />
               ))

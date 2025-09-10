@@ -15,8 +15,20 @@ import Link from "next/link";
 export default function NavigationBar() {
   return (
     <div>
+      {/* Desktop Navigation Bar */}
       <header className="hidden md:flex justify-between my-2 mx-4">
         <div className="flex gap-4">
+          <Image
+            alt="Whitworth Logo"
+            src="/whitworth.png"
+            width="32"
+            height="32"
+          />
+          <Link href="/">
+            <h1 className="font-light text-2xl">Whitworth Life</h1>
+          </Link>
+        </div>
+        <div className="flex gap-2">
           <Link href="/map">
             <Button className="w-16 h-8" variant="ghost">
               Map
@@ -27,24 +39,22 @@ export default function NavigationBar() {
               Events
             </Button>
           </Link>
-          <Link href="/facility">
+          <Link href="/social">
             <Button className="w-16 h-8" variant="ghost">
-              Facility
+              Social
             </Button>
           </Link>
         </div>
         <div className="flex gap-2">
-          <Link href="/">
-            <h1 className="font-light text-2xl">Whitworth Life</h1>
-          </Link>
-          <Image
-            alt="Whitworth Logo"
-            src="/whitworth.png"
-            width="32"
-            height="32"
-          />
+          <Button className="w-24 h-8" disabled>
+            Login
+          </Button>
+          <Button className="w-24 h-8" disabled>
+            Sign Up
+          </Button>
         </div>
       </header>
+      {/* Mobile Navigation Bar */}
       <header className="flex md:hidden my-2 justify-between mx-4">
         <div>
           <DropdownMenu>
@@ -52,6 +62,15 @@ export default function NavigationBar() {
               <Menu className="mx-auto mt-2" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-background">
+              <DropdownMenuLabel>
+                <p className="font-bold">Profile</p>
+              </DropdownMenuLabel>
+              <DropdownMenuItem>
+                <Link href="/login">Login</Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link href="/signup">Sign Up</Link>
+              </DropdownMenuItem>
               <DropdownMenuLabel>
                 <p className="font-bold">Menu</p>
               </DropdownMenuLabel>
@@ -62,7 +81,7 @@ export default function NavigationBar() {
                 <Link href="/events">Events</Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href="/faculty">Faculty</Link>
+                <Link href="/social">Social</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

@@ -1,4 +1,4 @@
-export const CATEGORIES = [
+export const categories = [
   "Food & Drink",
   "Faculty",
   "Study",
@@ -8,7 +8,7 @@ export const CATEGORIES = [
   "Admin",
 ];
 
-export const CAT_COLORS = {
+export const colors = {
   "Food & Drink": "#ef4444",
   Faculty: "#8b5cf6",
   Study: "#6a040f",
@@ -18,7 +18,7 @@ export const CAT_COLORS = {
   Admin: "#22c55e",
 };
 
-export const PLACES = [
+export const places = [
   // HUB & Library
   {
     id: "hub",

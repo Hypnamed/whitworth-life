@@ -26,7 +26,7 @@ export const places = [
     categories: ["Food & Drink", "Study", "Faculty"],
     lat: 47.752615496195396,
     lng: -117.41534005971103,
-    desc: "Dining, lounge, study nooks.",
+    desc: "Will work on it",
   },
   {
     id: "library",
@@ -34,7 +34,7 @@ export const places = [
     categories: ["Study", "Faculty"],
     lat: 47.75331746629829,
     lng: -117.41693334406533,
-    desc: "Quiet floors, printers, offices.",
+    desc: "Will work on it",
   },
   // Athletics
   {
@@ -43,7 +43,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.75271828635754,
     lng: -117.4232606228953,
-    desc: "Soccer Field of Whitworth University",
+    desc: "Will work on it",
   },
   {
     id: "omache",
@@ -51,7 +51,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.751776937453336,
     lng: -117.42261152834939,
-    desc: "Soccer Field, open to everyone.",
+    desc: "Will work on it",
   },
   {
     id: "marks",
@@ -59,7 +59,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.752606479524424,
     lng: -117.42218773934836,
-    desc: "Baseball Field",
+    desc: "Will work on it",
   },
   {
     id: "pinebowl",
@@ -67,7 +67,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.75245139222919,
     lng: -117.42090027909205,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "athleticscenter",
@@ -75,7 +75,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.75413967797237,
     lng: -117.42176891558839,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "gravesgym",
@@ -83,7 +83,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.75369751323814,
     lng: -117.42083796939339,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "fieldhouse",
@@ -91,7 +91,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.755041981444,
     lng: -117.4220084935376,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "aquatics",
@@ -99,7 +99,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.75516820291176,
     lng: -117.42098195922182,
-    desc: "Soccer Field of Whitworth University",
+    desc: "Will work on it",
   },
   {
     id: "tennis",
@@ -107,7 +107,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.75576868142948,
     lng: -117.42097391261163,
-    desc: "Soccer Field of Whitworth University",
+    desc: "Will work on it",
   },
   {
     id: "urec",
@@ -115,7 +115,7 @@ export const places = [
     categories: ["Athletics"],
     lat: 47.755721797469384,
     lng: -117.41918756145421,
-    desc: "Soccer Field of Whitworth University",
+    desc: "Will work on it",
   },
   // Residence Halls
   {
@@ -124,7 +124,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.753893170936216,
     lng: -117.41972351160906,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "ballard",
@@ -132,7 +132,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75339275462088,
     lng: -117.41993071224408,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "chapel",
@@ -140,7 +140,7 @@ export const places = [
     categories: ["Faculty"],
     lat: 47.75317004527094,
     lng: -117.41937884775146,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "warren",
@@ -148,7 +148,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75255015085784,
     lng: -117.41882363048825,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "arend",
@@ -156,7 +156,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75323171610508,
     lng: -117.41531552076555,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "baldwinjenkins",
@@ -164,7 +164,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75465992302573,
     lng: -117.41492123601897,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "stewart",
@@ -172,7 +172,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75404861199142,
     lng: -117.41450549364453,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "village",
@@ -180,7 +180,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.754265907739345,
     lng: -117.41385237578532,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "oliver",
@@ -188,7 +188,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75444082565129,
     lng: -117.41284386521771,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "duvall",
@@ -196,7 +196,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75373141712407,
     lng: -117.4124116653769,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "boppell",
@@ -204,7 +204,7 @@ export const places = [
     categories: ["Residence"],
     lat: 47.75300828920256,
     lng: -117.41306880657213,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   // Faculty
   {
@@ -213,7 +213,7 @@ export const places = [
     categories: ["Study", "Faculty"],
     lat: 47.75220571179572,
     lng: -117.41819733471772,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "mceachran",
@@ -221,7 +221,7 @@ export const places = [
     categories: ["Faculty"],
     lat: 47.751695811568794,
     lng: -117.4172873953976,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "cowles",
@@ -229,7 +229,7 @@ export const places = [
     categories: ["Faculty"],
     lat: 47.75170404588508,
     lng: -117.4179725208231,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "cowlescenter",
@@ -237,7 +237,7 @@ export const places = [
     categories: ["Faculty"],
     lat: 47.75164949481193,
     lng: -117.41915373123956,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "westminster",
@@ -245,7 +245,7 @@ export const places = [
     categories: ["Faculty", "Study"],
     lat: 47.75491743146826,
     lng: -117.4194807720076,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "liedcenter",
@@ -253,7 +253,7 @@ export const places = [
     categories: ["Faculty"],
     lat: 47.75504365936344,
     lng: -117.41850176576578,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "dornsife",
@@ -261,7 +261,7 @@ export const places = [
     categories: ["Faculty", "Study", "Health"],
     lat: 47.7549964959647,
     lng: -117.41710773122352,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "weyerhaeuser",
@@ -269,7 +269,7 @@ export const places = [
     categories: ["Faculty", "Study"],
     lat: 47.75411136894829,
     lng: -117.41868013266344,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "lindaman",
@@ -277,7 +277,7 @@ export const places = [
     categories: ["Faculty"],
     lat: 47.75364747158878,
     lng: -117.41801360368662,
-    desc: "Events, lectures, admin rooms.",
+    desc: "Will work on it",
   },
   {
     id: "schumacher",
@@ -309,7 +309,7 @@ export const places = [
     categories: ["Faculty", "Study", "Admin"],
     lat: 47.75365378315029,
     lng: -117.41524623465651,
-    desc: "Best place in the campus.",
+    desc: "Will work on it",
   },
   {
     id: "admissions",
@@ -317,7 +317,7 @@ export const places = [
     categories: ["Faculty", "Admin"],
     lat: 47.75019768166902,
     lng: -117.41755887297633,
-    desc: "Admissions building.",
+    desc: "Will work on it",
   },
   {
     id: "bookstore",
@@ -325,7 +325,7 @@ export const places = [
     categories: ["Faculty", "Food & Drink", "Study"],
     lat: 47.75142056787491,
     lng: -117.41238966037285,
-    desc: "The place you can get your textbooks and a good coffee.",
+    desc: "Will work on it",
   },
   {
     id: "hawthorne",
@@ -333,6 +333,6 @@ export const places = [
     categories: ["Faculty", "Study", "Admin"],
     lat: 47.75159369196888,
     lng: -117.41145759285865,
-    desc: "Admissions building.",
+    desc: "Will work on it",
   },
 ];

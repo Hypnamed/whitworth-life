@@ -17,7 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={lexend.variable}>
         <NavigationBar />
-        <main style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>{children}</main>
+        <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+          {children}
+        </main>
         <footer className="w-full h-24 flex items-center justify-center border-t mt-8">
           <p className="text-center">
             Made by{" "}

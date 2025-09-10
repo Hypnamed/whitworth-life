@@ -6,11 +6,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 
-import { FaBars } from "react-icons/fa6";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 
 export default function NavigationBar() {
@@ -50,11 +49,12 @@ export default function NavigationBar() {
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger>
-              <FaBars className="mx-auto mt-2" />
+              <Menu className="mx-auto mt-2" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Menu</DropdownMenuLabel>
-              <DropdownMenuSeparator />
+            <DropdownMenuContent className="bg-background">
+              <DropdownMenuLabel>
+                <p className="font-bold">Menu</p>
+              </DropdownMenuLabel>
               <DropdownMenuItem>
                 <Link href="/map">Map</Link>
               </DropdownMenuItem>

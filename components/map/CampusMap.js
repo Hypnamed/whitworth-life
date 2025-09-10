@@ -7,8 +7,9 @@ import { CATEGORIES, PLACES, CAT_COLORS } from "@/data/places";
 import { pinIcon } from "@/lib/mapIcons";
 import { Button } from "../ui/button";
 
-const MAP_CENTER = { lat: 47.7547, lng: -117.4177 };
+const MAP_CENTER = { lat: 47.7531493070487, lng: -117.41635063409184 };
 const MAP_CONTAINER_STYLE = { width: "100%", height: "100%" };
+const DEFAULT_ZOOM = 17;
 const mapOptions = {
   disableDefaultUI: false,
   clickableIcons: false,
@@ -29,6 +30,8 @@ export default function CampusMap() {
   const [selectedCats, setSelectedCats] = useState(new Set(CATEGORIES));
   const [logic, setLogic] = useState("ANY");
   const [activeId, setActiveId] = useState(null);
+  const [zoom, setZoom] = useState(DEFAULT_ZOOM);
+  const [mapInstance, setMapInstance] = useState(null);
   const searchParams = useSearchParams();
   // Set active marker from ?id= param on mount
   useEffect(() => {
@@ -60,13 +63,24 @@ export default function CampusMap() {
 
   const onLoad = useCallback(
     (map) => {
+      setMapInstance(map);
       if (!markers.length) return;
       const bounds = new google.maps.LatLngBounds();
       markers.forEach((p) => bounds.extend({ lat: p.lat, lng: p.lng }));
       map.fitBounds(bounds, 80);
+      // After fitBounds, set zoom to state value (manual override)
+      window.google.maps.event.addListenerOnce(map, "idle", () => {
+        map.setZoom(zoom);
+      });
     },
-    [markers]
+    [markers, zoom]
   );
+  // Keep zoom state in sync with user interaction
+  const handleZoomChanged = () => {
+    if (mapInstance) {
+      setZoom(mapInstance.getZoom());
+    }
+  };
 
   return (
     <div className="w-full h-[calc(100dvh-72px)] grid grid-rows-[auto_auto_1fr] sm:rounded-xl overflow-hidden bg-background sm:shadow-lg">
@@ -135,9 +149,10 @@ export default function CampusMap() {
       <div className="relative w-full h-full min-h-[300px] sm:min-h-0">
         <GoogleMap
           onLoad={onLoad}
+          onZoomChanged={handleZoomChanged}
           mapContainerStyle={{ width: "100%", height: "100%" }}
           center={MAP_CENTER}
-          zoom={16}
+          zoom={zoom}
           options={mapOptions}
         >
           <MarkerClustererF averageCenter enableRetinaIcons gridSize={50}>

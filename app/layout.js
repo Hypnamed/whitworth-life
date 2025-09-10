@@ -1,10 +1,23 @@
-import { Lexend } from "next/font/google";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavigationBar from "@/components/nav/NavigationBar";
 
-const lexend = Lexend({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  variable: "--font-lexend",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata = {
@@ -14,22 +27,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={lexend.variable}>
-        <NavigationBar />
-        <main style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-          {children}
-        </main>
-        <footer className="w-full h-24 flex items-center justify-center border-t mt-8">
-          <p className="text-center">
-            Made by{" "}
-            <a className="underline" href="https://ilkeeren.dev">
-              Eren
-            </a>{" "}
-            with ❤️
-          </p>
-        </footer>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
+        >
+          <NavigationBar />
+          <main className="flex-1">{children}</main>
+          <footer className="w-full h-24 flex items-center justify-center border-t mt-8">
+            <p className="text-center">
+              Made by{" "}
+              <a className="underline" href="https://ilkeeren.dev">
+                Eren
+              </a>{" "}
+              with ❤️
+            </p>
+          </footer>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

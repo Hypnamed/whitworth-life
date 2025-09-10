@@ -11,6 +11,13 @@ import {
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/nextjs";
 
 export default function NavigationBar() {
   return (
@@ -25,7 +32,7 @@ export default function NavigationBar() {
             height="32"
           />
           <Link href="/">
-            <h1 className="font-light text-2xl">Whitworth Life</h1>
+            <h1 className="font-normal text-2xl">Whitworth Life</h1>
           </Link>
         </div>
         <div className="flex gap-2">
@@ -46,12 +53,17 @@ export default function NavigationBar() {
           </Link>
         </div>
         <div className="flex gap-2">
-          <Button className="w-24 h-8" disabled>
-            Login
-          </Button>
-          <Button className="w-24 h-8" disabled>
-            Sign Up
-          </Button>
+          <SignedOut>
+            <SignUpButton>
+              <Button disabled>Sign Up</Button>
+            </SignUpButton>
+            <SignInButton>
+              <Button disabled>Login</Button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </div>
       </header>
       {/* Mobile Navigation Bar */}

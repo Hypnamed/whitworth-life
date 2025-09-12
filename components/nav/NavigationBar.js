@@ -23,8 +23,9 @@ export default function NavigationBar() {
   return (
     <div>
       {/* Desktop Navigation Bar */}
-      <header className="hidden md:flex justify-between my-2 mx-4">
-        <div className="flex gap-4">
+      <header className="hidden md:flex justify-between items-center my-2 mx-4">
+        {/* Left: Logo and Title */}
+        <div className="flex items-center gap-4 flex-1 min-w-0">
           <Image
             alt="Whitworth Logo"
             src="/whitworth.png"
@@ -32,10 +33,13 @@ export default function NavigationBar() {
             height="32"
           />
           <Link href="/">
-            <h1 className="font-normal text-2xl">Whitworth Life</h1>
+            <h1 className="font-normal text-2xl whitespace-nowrap">
+              Whitworth Life
+            </h1>
           </Link>
         </div>
-        <div className="flex gap-2">
+        {/* Middle: Navigation Buttons */}
+        <div className="flex justify-center gap-2 flex-none">
           <Link href="/map">
             <Button className="w-16 h-8" variant="ghost">
               Map
@@ -52,13 +56,14 @@ export default function NavigationBar() {
             </Button>
           </Link>
         </div>
-        <div className="flex gap-2">
+        {/* Right: Auth Buttons */}
+        <div className="flex gap-2 flex-1 min-w-0 justify-end">
           <SignedOut>
             <SignUpButton>
-              <Button disabled>Sign Up</Button>
+              <Button>Sign Up</Button>
             </SignUpButton>
             <SignInButton>
-              <Button disabled>Login</Button>
+              <Button>Login</Button>
             </SignInButton>
           </SignedOut>
           <SignedIn>
@@ -77,12 +82,19 @@ export default function NavigationBar() {
               <DropdownMenuLabel>
                 <p className="font-bold">Profile</p>
               </DropdownMenuLabel>
-              <DropdownMenuItem>
-                <Link href="/login">Login</Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/signup">Sign Up</Link>
-              </DropdownMenuItem>
+              <SignedOut>
+                <DropdownMenuItem>
+                  <SignUpButton>Sign Up</SignUpButton>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <SignInButton>Login</SignInButton>
+                </DropdownMenuItem>
+              </SignedOut>
+              <SignedIn>
+                <DropdownMenuItem>
+                  <UserButton />
+                </DropdownMenuItem>
+              </SignedIn>
               <DropdownMenuLabel>
                 <p className="font-bold">Menu</p>
               </DropdownMenuLabel>

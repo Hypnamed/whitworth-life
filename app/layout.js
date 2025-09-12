@@ -1,12 +1,7 @@
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+
 import "./globals.css";
 import NavigationBar from "@/components/nav/NavigationBar";
 
@@ -33,7 +28,10 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
         >
           <NavigationBar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1">
+            {children}
+            <Analytics />
+          </main>
           <footer className="w-full h-24 flex items-center justify-center border-t mt-8">
             <p className="text-center">
               Made by{" "}

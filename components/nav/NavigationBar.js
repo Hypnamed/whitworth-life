@@ -15,6 +15,7 @@ import {
   SignedIn,
   SignedOut,
   SignInButton,
+  SignOutButton,
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
@@ -80,7 +81,7 @@ export default function NavigationBar() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="bg-background">
               <DropdownMenuLabel>
-                <p className="font-bold">Profile</p>
+                <p className="font-bold">User</p>
               </DropdownMenuLabel>
               <SignedOut>
                 <DropdownMenuItem>
@@ -92,7 +93,10 @@ export default function NavigationBar() {
               </SignedOut>
               <SignedIn>
                 <DropdownMenuItem>
-                  <UserButton />
+                  <Link href="/user-profile">Profile</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <SignOutButton />
                 </DropdownMenuItem>
               </SignedIn>
               <DropdownMenuLabel>

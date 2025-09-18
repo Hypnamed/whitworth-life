@@ -69,7 +69,7 @@ export default async function AdminDashboard({ searchParams }) {
                 </form>
                 <form action={setRole}>
                   <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="moderator" name="role" />
+                  <input type="hidden" value="Moderator" name="role" />
                   <Button type="submit" className="w-40 h-8">
                     Make Moderator
                   </Button>
@@ -123,7 +123,7 @@ export default async function AdminDashboard({ searchParams }) {
                 </form>
                 <form action={setRole}>
                   <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="moderator" name="role" />
+                  <input type="hidden" value="Moderator" name="role" />
                   <Button type="submit" className="w-88 h-8">
                     Make Moderator
                   </Button>

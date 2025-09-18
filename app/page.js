@@ -12,9 +12,6 @@ export default function Home() {
           students can connect with each other, discover events, and navigate
           Whitworth with ease.
         </p>
-        <Link href="/admin">
-          <Button>Admin Panel</Button>
-        </Link>
       </section>
     </main>
   );

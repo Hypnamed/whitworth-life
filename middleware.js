@@ -2,6 +2,8 @@ import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // Add all *public* routes here (no auth required)
 const isPublicRoute = createRouteMatcher([
+  "/map(.*)",
+  "/events(.*)",
   "/log-in(.*)",
   "/sign-up(.*)",
   "/forgot-password(.*)",

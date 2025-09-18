@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { checkRole } from "@/utils/roles";
 
 import { Button } from "../ui/button";
 import {
@@ -20,7 +21,8 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 
-export default function NavigationBar() {
+export default async function NavigationBar() {
+  const isAdmin = await checkRole("Admin");
   return (
     <div>
       {/* Desktop Navigation Bar */}
@@ -58,7 +60,7 @@ export default function NavigationBar() {
           </Link>
         </div>
         {/* Right: Auth Buttons */}
-        <div className="flex gap-2 flex-1 min-w-0 justify-end">
+        <div className="flex gap-4 flex-1 min-w-0 justify-end">
           <SignedOut>
             <SignUpButton>
               <Button>Sign Up</Button>
@@ -68,6 +70,11 @@ export default function NavigationBar() {
             </SignInButton>
           </SignedOut>
           <SignedIn>
+            {isAdmin && (
+              <Link href="/admin">
+                <Button>Admin Panel</Button>
+              </Link>
+            )}
             <UserButton />
           </SignedIn>
         </div>
@@ -84,31 +91,36 @@ export default function NavigationBar() {
                 <p className="font-bold">User</p>
               </DropdownMenuLabel>
               <SignedOut>
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <SignUpButton>Sign Up</SignUpButton>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <SignInButton>Login</SignInButton>
                 </DropdownMenuItem>
               </SignedOut>
               <SignedIn>
-                <DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Link href="/user-profile">Profile</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                {isAdmin && (
+                  <DropdownMenuItem asChild>
+                    <Link href="/admin">Admin Panel</Link>
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem asChild>
                   <SignOutButton />
                 </DropdownMenuItem>
               </SignedIn>
               <DropdownMenuLabel>
                 <p className="font-bold">Menu</p>
               </DropdownMenuLabel>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link href="/map">Map</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link href="/events">Events</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem asChild>
                 <Link href="/social">Social</Link>
               </DropdownMenuItem>
             </DropdownMenuContent>

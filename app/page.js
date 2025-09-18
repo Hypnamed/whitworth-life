@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
   return (
     <main>
@@ -9,6 +12,9 @@ export default function Home() {
           students can connect with each other, discover events, and navigate
           Whitworth with ease.
         </p>
+        <Link href="/admin">
+          <Button>Admin Panel</Button>
+        </Link>
       </section>
     </main>
   );

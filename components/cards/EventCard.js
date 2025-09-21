@@ -46,7 +46,7 @@ export default function EventCard({
         ) : null}
         <p>Event will be hosted in {location}</p>
         {organizer && (
-          <p className="text-sm text-gray-600 mt-2">Organized by {organizer}</p>
+          <p className="text-sm text-gray-600 mt-2">Posted by {organizer}</p>
         )}
       </CardContent>
       <CardFooter>

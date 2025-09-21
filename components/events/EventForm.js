@@ -68,6 +68,22 @@ export default function EventForm({ initialEvent }) {
 
   async function onSubmit(e) {
     e.preventDefault();
+    // Client-side validation: ensure end is not earlier than start
+    const start = startsAtValue ? new Date(startsAtValue) : null;
+    const end = endsAtValue ? new Date(endsAtValue) : null;
+    if (
+      !start ||
+      !end ||
+      Number.isNaN(start.getTime()) ||
+      Number.isNaN(end.getTime())
+    ) {
+      alert("Please select valid start and end date and time");
+      return;
+    }
+    if (start > end) {
+      alert("End date can't be earlier than start date");
+      return;
+    }
     try {
       const fd = new FormData(e.currentTarget);
       fd.set("detailsJson", JSON.stringify(detailsJson));

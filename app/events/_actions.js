@@ -26,10 +26,12 @@ export async function upsertEventAction(formData) {
     formData.get("allDay") === "on" || formData.get("allDay") === "true";
 
   if (!title) throw new Error("Title is required");
-  if (!location) throw new Error("Location is required");
   if (Number.isNaN(startsAt.getTime()) || Number.isNaN(endsAt.getTime())) {
     throw new Error("Invalid dates");
   }
+  if (startsAt > endsAt)
+    throw new Error("End date can't be earlier than start date");
+  if (!location) throw new Error("Location is required");
 
   const appUser = await prisma.user.findUnique({ where: { clerkId: userId } });
   if (!appUser) throw new Error("App user not found");

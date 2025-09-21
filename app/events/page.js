@@ -4,14 +4,13 @@ import { CalendarPlus } from "lucide-react";
 import Link from "next/link";
 import { prisma } from "@/lib/db";
 import { places } from "@/data/places";
+import { currentUser } from "@clerk/nextjs/server";
 
-// Helper function to get location name from location ID
 function getLocationName(locationId) {
   const place = places.find((p) => p.id === locationId);
   return place ? place.name : locationId;
 }
 
-// Helper function to format date for display
 function formatEventDate(startsAt, endsAt, allDay) {
   const startDate = new Date(startsAt);
   const endDate = new Date(endsAt);
@@ -37,7 +36,6 @@ function formatEventDate(startsAt, endsAt, allDay) {
     hour12: true,
   });
 
-  // If same day, show start time only
   if (startDate.toDateString() === endDate.toDateString()) {
     return `${startDate.toLocaleDateString("en-US", {
       month: "long",
@@ -45,7 +43,6 @@ function formatEventDate(startsAt, endsAt, allDay) {
     })} ${startTime}`;
   }
 
-  // If different days, show both dates
   const endTime = endDate.toLocaleTimeString("en-US", {
     hour: "numeric",
     minute: "2-digit",
@@ -61,36 +58,32 @@ function formatEventDate(startsAt, endsAt, allDay) {
 }
 
 export default async function EventsPage() {
-  // Fetch events from database with error handling
+  const user = await currentUser();
+  const role =
+    user?.publicMetadata?.role ??
+    user?.privateMetadata?.role ??
+    user?.unsafeMetadata?.role ??
+    "User";
+  const allowedRoles = new Set(["ClubLeader", "ASWU", "Faculty", "Admin"]);
+  const canCreate = allowedRoles.has(role);
+
   let events = [];
   try {
     events = await prisma.event.findMany({
-      where: {
-        published: true,
-      },
-      include: {
-        organizer: {
-          select: {
-            name: true,
-          },
-        },
-      },
-      orderBy: {
-        startsAt: "asc",
-      },
+      where: { published: true },
+      include: { organizer: { select: { name: true } } },
+      orderBy: { startsAt: "asc" },
     });
   } catch (error) {
     console.error("Error fetching events:", error);
-    // Return empty array if database is not available
     events = [];
   }
 
-  // Transform events to match EventCard props
   const transformedEvents = events.map((event) => ({
     id: event.id,
     title: event.title,
     description: event.description || "",
-    image: event.imageUrl || "/whitworth.png", // Default image
+    image: event.imageUrl || "/whitworth.png",
     location: getLocationName(event.location),
     locationId: event.location,
     date: formatEventDate(event.startsAt, event.endsAt, event.allDay),
@@ -100,12 +93,14 @@ export default async function EventsPage() {
   return (
     <main>
       <div className="flex justify-end my-4 mx-4">
-        <Link href="/events/editor">
-          <Button>
-            <CalendarPlus />
-            Create New Event
-          </Button>
-        </Link>
+        {canCreate && (
+          <Link href="/events/editor">
+            <Button>
+              <CalendarPlus />
+              Create New Event
+            </Button>
+          </Link>
+        )}
       </div>
       <section className="hidden md:grid justify-center mt-16 mx-10 grid-cols-4 gap-4">
         {transformedEvents.length === 0 ? (

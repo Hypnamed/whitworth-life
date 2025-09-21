@@ -20,6 +20,7 @@ import {
   SignUpButton,
   UserButton,
 } from "@clerk/nextjs";
+import ThemeToggle from "./ThemeToggle";
 
 export default async function NavigationBar() {
   const isAdmin = await checkRole("Admin");
@@ -61,6 +62,7 @@ export default async function NavigationBar() {
         </div>
         {/* Right: Auth Buttons */}
         <div className="flex gap-4 flex-1 min-w-0 justify-end">
+          <ThemeToggle />
           <SignedOut>
             <SignUpButton>
               <Button>Sign Up</Button>

@@ -1,11 +1,17 @@
 "use client";
 
 import { useMemo, useState, useCallback, useEffect } from "react";
-import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
-import { MarkerClustererF } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  MarkerF,
+  InfoWindowF,
+  MarkerClustererF,
+  CircleF,
+} from "@react-google-maps/api";
 import { categories, places, colors } from "@/data/places";
 import { pinIcon } from "@/lib/mapIcons";
 import { Button } from "../ui/button";
+import { useSearchParams } from "next/navigation";
 
 const MAP_CENTER = { lat: 47.7531493070487, lng: -117.41635063409184 };
 const DEFAULT_ZOOM = 17;
@@ -23,19 +29,35 @@ const mapOptions = {
   ],
 };
 
-import { useSearchParams } from "next/navigation";
-
 export default function CampusMap() {
   const [selectedCats, setSelectedCats] = useState(new Set(categories));
   const [logic, setLogic] = useState("ANY");
   const [activeId, setActiveId] = useState(null);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [mapInstance, setMapInstance] = useState(null);
+
+  // 👇 new: user position + accuracy
+  const [userPos, setUserPos] = useState(null);
+  const [accuracy, setAccuracy] = useState(null);
+
   const searchParams = useSearchParams();
   useEffect(() => {
     const id = searchParams?.get("id");
     if (id) setActiveId(id);
   }, [searchParams]);
+
+  // get user location once on mount
+  useEffect(() => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserPos({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setAccuracy(pos.coords.accuracy);
+      },
+      (err) => console.warn("Geolocation error:", err),
+      { enableHighAccuracy: true }
+    );
+  }, []);
 
   const matches = useCallback(
     (place) => {
@@ -72,6 +94,7 @@ export default function CampusMap() {
     },
     [markers, zoom]
   );
+
   const handleZoomChanged = () => {
     if (mapInstance) {
       setZoom(mapInstance.getZoom());
@@ -198,6 +221,35 @@ export default function CampusMap() {
                 </div>
               </InfoWindowF>
             ) : null
+          )}
+
+          {/* 👇 User marker + accuracy circle */}
+          {userPos && (
+            <>
+              <MarkerF
+                position={userPos}
+                icon={{
+                  path: google.maps.SymbolPath.CIRCLE,
+                  scale: 7,
+                  fillColor: "#4285F4",
+                  fillOpacity: 1,
+                  strokeColor: "white",
+                  strokeWeight: 2,
+                }}
+              />
+              <CircleF
+                center={userPos}
+                radius={15} // 👈 just 15 meters instead of GPS accuracy
+                options={{
+                  fillColor: "#4285F4",
+                  fillOpacity: 0.15,
+                  strokeColor: "#4285F4",
+                  strokeOpacity: 0.4,
+                  strokeWeight: 1,
+                  clickable: false,
+                }}
+              />
+            </>
           )}
         </GoogleMap>
       </div>

@@ -4,12 +4,13 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "prisma generate && next build --turbopack",
     "start": "next start",
     "sync:roles": "node scripts/syncRolesFromClerk.js",
     "roles:default": "node scripts/setDefaultRoleForAllUsers.js",
     "backfill:clerk": "node scripts/backfillClerkUsers.js",
-    "lint": "eslint"
+    "lint": "eslint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.10",

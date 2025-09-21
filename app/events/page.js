@@ -61,22 +61,29 @@ function formatEventDate(startsAt, endsAt, allDay) {
 }
 
 export default async function EventsPage() {
-  // Fetch events from database
-  const events = await prisma.event.findMany({
-    where: {
-      published: true,
-    },
-    include: {
-      organizer: {
-        select: {
-          name: true,
+  // Fetch events from database with error handling
+  let events = [];
+  try {
+    events = await prisma.event.findMany({
+      where: {
+        published: true,
+      },
+      include: {
+        organizer: {
+          select: {
+            name: true,
+          },
         },
       },
-    },
-    orderBy: {
-      startsAt: "asc",
-    },
-  });
+      orderBy: {
+        startsAt: "asc",
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    // Return empty array if database is not available
+    events = [];
+  }
 
   // Transform events to match EventCard props
   const transformedEvents = events.map((event) => ({

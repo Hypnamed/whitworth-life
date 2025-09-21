@@ -59,11 +59,7 @@ function formatEventDate(startsAt, endsAt, allDay) {
 
 export default async function EventsPage() {
   const user = await currentUser();
-  const role =
-    user?.publicMetadata?.role ??
-    user?.privateMetadata?.role ??
-    user?.unsafeMetadata?.role ??
-    "User";
+  const role = user?.publicMetadata?.role ?? "User";
   const allowedRoles = new Set(["ClubLeader", "ASWU", "Faculty", "Admin"]);
   const canCreate = allowedRoles.has(role);
 

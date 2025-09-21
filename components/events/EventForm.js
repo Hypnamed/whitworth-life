@@ -264,12 +264,8 @@ export default function EventForm({ initialEvent }) {
           <input
             name="description"
             defaultValue={initialEvent?.description ?? ""}
-            className="border p-2 rounded-xl w-full"
+            className="border p-2 rounded-xl w-full h-20"
             placeholder="Short description (optional)"
-          />
-          <RichEditor
-            initialContent={initialEvent?.detailsJson}
-            onChange={setDetailsJson}
           />
           <Button type="submit">
             {initialEvent ? "Save changes" : "Create event"}

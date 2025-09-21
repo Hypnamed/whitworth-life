@@ -8,6 +8,7 @@ const toRole = (val) => {
   if (!val) return "User";
   const s = String(val).toLowerCase();
   if (s === "admin") return "Admin";
+  if (s === "faculty") return "Faculty";
   if (s === "moderator" || s === "mod") return "Moderator";
   if (s === "aswu") return "ASWU";
   if (s === "clubleader" || s === "club_leader" || s === "club-leader")
@@ -25,13 +26,14 @@ export async function setRole(formData) {
 
   try {
     const userId = formData.get("id");
-    const role = formData.get("role");
+    const rawRole = formData.get("role");
+    const role = toRole(rawRole); // ✅ normalize once and use everywhere
 
     console.log(`🎭 Setting role for user ${userId} to ${role}`);
 
     // Update Clerk metadata
     const res = await client.users.updateUserMetadata(userId, {
-      publicMetadata: { role },
+      publicMetadata: { role }, // ✅ use normalized here
     });
 
     console.log("✅ Clerk metadata updated:", res.publicMetadata);
@@ -39,7 +41,7 @@ export async function setRole(formData) {
     // Also update database immediately as backup
     const dbResult = await prisma.user.updateMany({
       where: { clerkId: userId },
-      data: { role: toRole(role) },
+      data: { role },
     });
 
     console.log("✅ Database updated directly:", dbResult);

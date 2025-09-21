@@ -12,6 +12,7 @@ enum Role {
   ClubLeader
   ASWU
   Moderator
+  Faculty
   Admin
 }
 

@@ -13,6 +13,7 @@ const toRole = (val) => {
   if (s === "aswu") return "ASWU";
   if (s === "clubleader" || s === "club_leader" || s === "club-leader")
     return "ClubLeader";
+  if (s === "user") return "User";
   return "User";
 };
 
@@ -45,6 +46,9 @@ export async function setRole(formData) {
     });
 
     console.log("✅ Database updated directly:", dbResult);
+
+    // Add a small delay to ensure the database update completes before webhook
+    await new Promise((resolve) => setTimeout(resolve, 100));
 
     return {
       message: `Role set to ${role}. Updated ${dbResult.count} database records.`,

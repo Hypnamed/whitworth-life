@@ -9,10 +9,12 @@ const toRole = (val) => {
   if (!val) return "User";
   const s = String(val).toLowerCase();
   if (s === "admin") return "Admin";
+  if (s === "faculty") return "Faculty";
   if (s === "moderator" || s === "mod") return "Moderator";
   if (s === "aswu") return "ASWU";
   if (s === "clubleader" || s === "club_leader" || s === "club-leader")
     return "ClubLeader";
+  if (s === "user") return "User";
   return "User";
 };
 
@@ -61,6 +63,10 @@ export async function POST(req) {
 
   console.log(`🚀 Processing webhook event: ${type}`);
   console.log("📋 Event data:", JSON.stringify(data, null, 2));
+  console.log(
+    "🔍 Public metadata:",
+    JSON.stringify(data.public_metadata, null, 2)
+  );
 
   const clerkId = data.id;
   const emails = Array.isArray(data.email_addresses)

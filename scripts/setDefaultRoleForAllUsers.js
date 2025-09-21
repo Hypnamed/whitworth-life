@@ -56,6 +56,8 @@ async function patchClerkRole(userId, role) {
         role:
           role === "Admin"
             ? "Admin"
+            : role === "Faculty"
+            ? "Faculty"
             : role === "Moderator"
             ? "Moderator"
             : role === "ASWU"
@@ -68,6 +70,8 @@ async function patchClerkRole(userId, role) {
         role:
           role === "Admin"
             ? "Admin"
+            : role === "Faculty"
+            ? "Faculty"
             : role === "Moderator"
             ? "Moderator"
             : role === "ASWU"

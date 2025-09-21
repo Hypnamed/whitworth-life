@@ -2,8 +2,14 @@ import { redirect } from "next/navigation";
 import { checkRole } from "@/utils/roles";
 import { SearchUsers } from "@/components/admin/SearchUsers";
 import { clerkClient } from "@clerk/nextjs/server";
-import { removeRole, setRole } from "./_actions";
+import { setRole } from "./_actions";
 import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 
 export default async function AdminDashboard({ searchParams }) {
@@ -59,31 +65,70 @@ export default async function AdminDashboard({ searchParams }) {
               </div>
 
               {/* RIGHT: actions (fixed, no shrink) */}
-              <div className="flex flex-col gap-2 shrink-0">
-                <form action={setRole}>
-                  <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="Admin" name="role" />
-                  <Button type="submit" className="w-40 h-8">
-                    Make Admin
-                  </Button>
-                </form>
-                <form action={setRole}>
-                  <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="Moderator" name="role" />
-                  <Button type="submit" className="w-40 h-8">
-                    Make Moderator
-                  </Button>
-                </form>
-                <form action={removeRole}>
-                  <input type="hidden" value={user.id} name="id" />
-                  <Button
-                    variant="destructive"
-                    type="submit"
-                    className="w-40 h-8"
-                  >
-                    Remove Role
-                  </Button>
-                </form>
+              <div className="flex flex-col gap-2 shrink-0 items-center">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-40 h-8">
+                      Set Role
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="User" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          User
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="ClubLeader" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Club Leader
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="ASWU" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          ASWU
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="Moderator" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Moderator
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="Faculty" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Faculty
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="Admin" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Admin
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
             {/* Mobile*/}
@@ -114,30 +159,69 @@ export default async function AdminDashboard({ searchParams }) {
 
               {/* RIGHT: actions (fixed, no shrink) */}
               <div className="flex flex-col items-center gap-2 shrink-0">
-                <form action={setRole}>
-                  <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="Admin" name="role" />
-                  <Button type="submit" className="w-88 h-8">
-                    Make Admin
-                  </Button>
-                </form>
-                <form action={setRole}>
-                  <input type="hidden" value={user.id} name="id" />
-                  <input type="hidden" value="Moderator" name="role" />
-                  <Button type="submit" className="w-88 h-8">
-                    Make Moderator
-                  </Button>
-                </form>
-                <form action={removeRole}>
-                  <input type="hidden" value={user.id} name="id" />
-                  <Button
-                    variant="destructive"
-                    type="submit"
-                    className="w-88 h-8"
-                  >
-                    Remove Role
-                  </Button>
-                </form>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-88 h-8">
+                      Set Role
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="User" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          User
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="ClubLeader" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Club Leader
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="ASWU" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          ASWU
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="Moderator" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Moderator
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="Faculty" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Faculty
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                    <form action={setRole}>
+                      <input type="hidden" value={user.id} name="id" />
+                      <input type="hidden" value="Admin" name="role" />
+                      <DropdownMenuItem asChild>
+                        <button type="submit" className="w-full text-left">
+                          Admin
+                        </button>
+                      </DropdownMenuItem>
+                    </form>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
             </div>
           </div>

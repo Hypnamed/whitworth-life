@@ -6,10 +6,12 @@ const toRole = (val) => {
   if (!val) return "User";
   const s = String(val).toLowerCase();
   if (s === "admin") return "Admin";
+  if (s === "faculty") return "Faculty";
   if (s === "moderator" || s === "mod") return "Moderator";
   if (s === "aswu") return "ASWU";
   if (s === "clubleader" || s === "club_leader" || s === "club-leader")
     return "ClubLeader";
+  if (s === "user") return "User";
   return "User";
 };
 

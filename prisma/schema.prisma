@@ -16,23 +16,104 @@ enum Role {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
 
-  clerkId   String   @unique
-  email     String   @unique
+  clerkId   String    @unique
+  email     String    @unique
   name      String
-  
-  role      Role     @default(User)
+
+  role      Role      @default(User)
+
   posts     Post[]
+  comments  Comment[]
+  events    Event[]   @relation("UserEvents")
 }
 
 model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  published Boolean  @default(false)
-  title     String   @db.VarChar(255)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+  id          Int        @id @default(autoincrement())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  published   Boolean    @default(false)
+
+  title       String     @db.VarChar(255)
+  slug        String     @unique
+  excerpt     String?    @db.VarChar(300)
+  contentJson Json       // TipTap JSON
+
+  author      User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    Int
+
+  attachments Attachment[]
+  comments    Comment[]
+
+  @@index([authorId])
+  @@index([createdAt])
+}
+
+model Comment {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  content    String
+
+  author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   Int
+  post       Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId     Int
+
+  parent     Comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId   Int?
+  children   Comment[] @relation("CommentReplies")
+
+  @@index([postId])
+  @@index([authorId])
+}
+
+model Event {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  published   Boolean   @default(true)
+
+  title       String    @db.VarChar(255)
+  slug        String    @unique
+  description String?
+  detailsJson Json?     // TipTap JSON if you want long body text
+  imageUrl    String?
+
+  location    String    // stores `id` from data/places.js
+  startsAt    DateTime
+  endsAt      DateTime
+  allDay      Boolean   @default(false)
+
+  organizer   User?     @relation("UserEvents", fields: [organizerId], references: [id], onDelete: SetNull)
+  organizerId Int?
+
+  attachments Attachment[]
+
+  @@index([startsAt])
+  @@index([published])
+}
+
+model Attachment {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+
+  url        String
+  fileName   String?
+  mimeType   String?
+  sizeBytes  Int?
+  width      Int?
+  height     Int?
+
+  post       Post?     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId     Int?
+
+  event      Event?    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  eventId    Int?
+
+  @@index([postId])
+  @@index([eventId])
 }

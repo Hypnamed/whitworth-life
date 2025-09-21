@@ -33,7 +33,7 @@ export async function setRole(formData) {
 
     // Update Clerk metadata
     const res = await client.users.updateUserMetadata(userId, {
-      publicMetadata: { role }, // ✅ use normalized here
+      publicMetadata: { role }, // ✅ normalized value
     });
 
     console.log("✅ Clerk metadata updated:", res.publicMetadata);
@@ -58,7 +58,7 @@ export async function setRole(formData) {
 export async function removeRole(formData) {
   const client = await clerkClient();
 
-  // Optional but wise: guard this too
+  // Guard: only Admins can remove
   if (!(await checkRole("Admin"))) {
     return { message: "Not Authorized" };
   }
@@ -66,16 +66,16 @@ export async function removeRole(formData) {
   try {
     const userId = formData.get("id");
 
-    console.log(`🗑️ Removing role for user ${userId}`);
+    console.log(`🗑️ Resetting role for user ${userId} to User`);
 
-    // Update Clerk metadata
+    // Update Clerk metadata → always User
     const res = await client.users.updateUserMetadata(userId, {
-      publicMetadata: { role: null },
+      publicMetadata: { role: "User" },
     });
 
     console.log("✅ Clerk metadata updated:", res.publicMetadata);
 
-    // Also update database immediately as backup
+    // Update DB → always User
     const dbResult = await prisma.user.updateMany({
       where: { clerkId: userId },
       data: { role: "User" },
@@ -84,10 +84,10 @@ export async function removeRole(formData) {
     console.log("✅ Database updated directly:", dbResult);
 
     return {
-      message: `Role removed. Updated ${dbResult.count} database records.`,
+      message: `Role reset to User. Updated ${dbResult.count} database records.`,
     };
   } catch (err) {
-    console.error("❌ Error removing role:", err);
+    console.error("❌ Error resetting role:", err);
     return { message: String(err) };
   }
 }

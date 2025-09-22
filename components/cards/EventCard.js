@@ -16,7 +16,6 @@ import Link from "next/link";
 export default function EventCard({
   title,
   description,
-  details,
   image,
   location,
   locationId,
@@ -38,9 +37,6 @@ export default function EventCard({
         </CardAction>
       </CardHeader>
       <CardContent>
-        {details ? (
-          <p className="text-sm text-muted-foreground whitespace-pre-line mb-2"></p>
-        ) : null}
         {image ? (
           <Image
             alt="Event Photo"

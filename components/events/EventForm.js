@@ -1,5 +1,4 @@
 "use client";
-import RichEditor from "@/components/editor/RichEditor";
 
 import { useMemo, useState } from "react";
 import { places } from "@/data/places";
@@ -37,9 +36,16 @@ export default function EventForm({ initialEvent }) {
     return `${year}-${month}-${day}T${timeStr}`;
   }
 
+  // Start "today" at midnight for calendar constraints
+  const todayStart = useMemo(() => {
+    const t = new Date();
+    return new Date(t.getFullYear(), t.getMonth(), t.getDate());
+  }, []);
+  const isEditing = !!initialEvent?.id;
+
   // Start datetime state
   const [startDate, setStartDate] = useState(() =>
-    initialEvent?.startsAt ? new Date(initialEvent.startsAt) : undefined
+    initialEvent?.startsAt ? new Date(initialEvent.startsAt) : new Date()
   );
   const [startTime, setStartTime] = useState(() =>
     initialEvent?.startsAt ? toTimeString(new Date(initialEvent.startsAt)) : ""
@@ -47,7 +53,7 @@ export default function EventForm({ initialEvent }) {
 
   // End datetime state
   const [endDate, setEndDate] = useState(() =>
-    initialEvent?.endsAt ? new Date(initialEvent.endsAt) : undefined
+    initialEvent?.endsAt ? new Date(initialEvent.endsAt) : new Date()
   );
   const [endTime, setEndTime] = useState(() =>
     initialEvent?.endsAt ? toTimeString(new Date(initialEvent.endsAt)) : ""
@@ -82,6 +88,12 @@ export default function EventForm({ initialEvent }) {
     }
     if (start > end) {
       alert("End date can't be earlier than start date");
+      return;
+    }
+    // New: prevent creating events in the past (start must be in the future)
+    const now = new Date();
+    if (!isEditing && start < now) {
+      alert("Start date/time can't be in the past");
       return;
     }
     try {
@@ -167,6 +179,9 @@ export default function EventForm({ initialEvent }) {
                           mode="single"
                           selected={startDate}
                           captionLayout="dropdown"
+                          defaultMonth={startDate ?? todayStart}
+                          fromDate={todayStart}
+                          disabled={(d) => d < todayStart}
                           onSelect={(d) => {
                             setStartDate(d);
                             setOpenStart(false);
@@ -230,6 +245,9 @@ export default function EventForm({ initialEvent }) {
                           mode="single"
                           selected={endDate}
                           captionLayout="dropdown"
+                          defaultMonth={endDate ?? todayStart}
+                          fromDate={todayStart}
+                          disabled={(d) => d < todayStart}
                           onSelect={(d) => {
                             setEndDate(d);
                             setOpenEnd(false);

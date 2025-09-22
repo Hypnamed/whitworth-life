@@ -105,9 +105,9 @@ export default async function EventsPage() {
             No events scheduled. Create the first event!
           </p>
         ) : (
-          transformedEvents.map((event) => (
-            <EventCard key={event.id} {...event} />
-          ))
+          transformedEvents
+            .toReversed()
+            .map((event) => <EventCard key={event.id} {...event} />)
         )}
       </section>
       <section className="grid md:hidden justify-center mt-16 mx-10 grid-cols-1 gap-4">

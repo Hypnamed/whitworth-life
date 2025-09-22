@@ -67,7 +67,7 @@ export default async function EventsPage() {
   try {
     events = await prisma.event.findMany({
       where: { published: true },
-      include: { organizer: { select: { name: true } } },
+      include: { organizer: { select: { name: true, role: true } } }, // include role
       orderBy: { startsAt: "asc" },
     });
   } catch (error) {
@@ -84,6 +84,7 @@ export default async function EventsPage() {
     locationId: event.location,
     date: formatEventDate(event.startsAt, event.endsAt, event.allDay),
     organizer: event.organizer?.name || "Unknown",
+    organizerRole: event.organizer?.role ?? "Unknown",
   }));
 
   return (

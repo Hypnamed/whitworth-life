@@ -239,7 +239,7 @@ export default function CampusMap() {
               />
               <CircleF
                 center={userPos}
-                radius={15} // 👈 just 15 meters instead of GPS accuracy
+                radius={15}
                 options={{
                   fillColor: "#4285F4",
                   fillOpacity: 0.15,

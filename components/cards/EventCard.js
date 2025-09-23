@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 
+// Get event details and render them in a card component
 export default function EventCard({
   title,
   description,

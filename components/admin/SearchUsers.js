@@ -17,6 +17,7 @@ export const SearchUsers = () => {
           const form = e.currentTarget;
           const formData = new FormData(form);
           const queryTerm = formData.get("search") || "";
+          // Add query to the end of the path while making a search
           router.push(pathname + "?search=" + encodeURIComponent(queryTerm));
         }}
       >

@@ -116,9 +116,9 @@ export default async function EventsPage() {
             No events scheduled. Create the first event!
           </p>
         ) : (
-          transformedEvents.map((event) => (
-            <EventCard key={event.id} {...event} />
-          ))
+          transformedEvents
+            .toReversed()
+            .map((event) => <EventCard key={event.id} {...event} />)
         )}
       </section>
     </main>
